@@ -13,3 +13,21 @@ class Solution {
         return x == reversedHalf || x == reversedHalf / 10;
     }
 }
+
+------------------------------------------------------------------------------------------------------------
+class Solution {
+    public boolean isPalindrome(int x) {
+    Scanner sc = new Scanner(System.in);
+        int d = sc.nextInt();
+        int steps = 0;
+        int count = 0;
+        steps = d/5;
+        if(d%5==0){
+           count = steps;
+        }
+        else{
+            count = steps +1;
+        }
+        System.out.println(count);
+    }
+}
