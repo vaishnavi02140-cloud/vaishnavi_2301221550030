@@ -36,3 +36,67 @@ public class Solution {
         return false;                  
     }
 }
+-------------------------------------------------------------------------------------
+import java.util.Stack;
+
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : s.toCharArray()) {
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+
+                char top = stack.pop();
+
+                if ((ch == ')' && top != '(') ||
+                    (ch == '}' && top != '{') ||
+                    (ch == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+
+        return stack.isEmpty();
+    }
+}
+---------------------------------------------------------------------------------
+public class UndoRedoDemo {
+    public static void main(String[] args) {
+        int[] undo = new int[10];
+        int[] redo = new int[10];
+
+        int utop = -1;
+        int rtop = -1;
+
+        // Push elements into undo stack
+        undo[++utop] = 10;
+        undo[++utop] = 20;
+        undo[++utop] = 30;
+
+        System.out.print("Undo Stack: ");
+        for (int i = utop; i >= 0; i--) {
+            System.out.print(undo[i] + " ");
+        }
+
+        // Undo operation
+        redo[++rtop] = undo[utop--];
+
+        System.out.print("\nAfter Undo: ");
+        for (int i = utop; i >= 0; i--) {
+            System.out.print(undo[i] + " ");
+        }
+
+        // Redo operation
+        undo[++utop] = redo[rtop--];
+
+        System.out.print("\nAfter Redo: ");
+        for (int i = utop; i >= 0; i--) {
+            System.out.print(undo[i] + " ");
+        }
+    }
+}
